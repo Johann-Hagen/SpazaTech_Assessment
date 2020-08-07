@@ -22,6 +22,7 @@ class CounterCubit extends Cubit<Breakdown> {
       runningTotal -= 200;
       twoHundredRCount++;
     }
+
     if (twoHundredRCount > 0) message += "R200's : $twoHundredRCount ";
     while (runningTotal > 100) {
       runningTotal -= 100;
