@@ -4,7 +4,7 @@ import 'package:meta/meta.dart';
 part 'simple_calc_state.dart';
 
 class SimpleCalcCubit extends Cubit<SimpleCalcState> {
-  SimpleCalcCubit() : super(SimpleCalcInitial());
+  SimpleCalcCubit() : super(SimpleCalcCalculated(null));
 
   List<num> validDenominations = [200, 50, 20, 10, 5, 2, 1, 0.5, 0.2];
 

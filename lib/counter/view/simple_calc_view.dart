@@ -16,26 +16,45 @@ class SimpleCalcView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Simple Calc')),
+      appBar: AppBar(title: Text('Simple Calculator')),
       body: BlocBuilder<SimpleCalcCubit, SimpleCalcState>(
         builder: (context, state) {
           if (state is SimpleCalcCalculated) {
             return SafeArea(
               child: Column(
                 children: [
-                  Row(
-                    children: [
-                      Text('Product Cost:'),
-                      Expanded(child: TextField(controller: costController)),
-                    ],
+                  Card(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        children: [
+                          Row(
+                            children: [
+                              Expanded(child: Text('Product Cost:')),
+                              Expanded(child: TextField(controller: costController)),
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Expanded(child: Text('Tender Amount:')),
+                              Expanded(child: TextField(controller: tenderController)),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
-                  Row(
-                    children: [
-                      Text('Tender Amount:'),
-                      Expanded(child: TextField(controller: tenderController)),
-                    ],
+                  Card(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Center(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: state.values.entries.map((entry) => Text('${entry.key} x ${entry.value}')).toList(),
+                        ),
+                      ),
+                    ),
                   ),
-                  Text('${state.values ?? ''}'),
                   Expanded(child: Container()),
                   FlatButton(
                     onPressed: () => _calculateChange(context),
